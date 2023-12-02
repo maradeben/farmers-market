@@ -38,18 +38,12 @@ These are centered around the end-users of the product, thus:
 * MySQL
 
 
-## Installation
-* Clone this repository: `git clone "https://github.com/alexaorrico/AirBnB_clone.git"`
-* Access AirBnb directory: `cd AirBnB_clone`
-* Run hbnb(interactively): `./console` and enter command
-* Run hbnb(non-interactively): `echo "<command>" | ./console.py`
-
 ## Authors
 
 ### Frontend Devs:
-Joseph Williams - [Github](https://github.com/Thinktanksy) / [LinkedIn](https:/linkedin.com/in/joseph-williams-076a62270)
-Bamijoko Adebayo - [Github](https://github.com/thenumber1boss) / [X](https://x.com/thenumber1_boss) / [LinkedIn](https://linkedin.com/in/thenumber1boss)
+* Joseph Williams - [Github](https://github.com/Thinktanksy) / [LinkedIn](https:/linkedin.com/in/joseph-williams-076a62270)
+* Bamijoko Adebayo - [Github](https://github.com/thenumber1boss) / [X](https://x.com/thenumber1_boss) / [LinkedIn](https://linkedin.com/in/thenumber1boss)
 
 ## BackEnd Devs
-Ebenezer Maradesa - [Github](https://github.com/maradeben) / [X](https://x.com/maradeben) / [LinkedIn](https://linkedin.com/in/ebenezer-maradesa)
-Mildred Nwonye - [Github](https://github.com/MildredJessica)
+* Mildred Nwonye - [Github](https://github.com/MildredJessica)
+* Ebenezer Maradesa - [Github](https://github.com/maradeben) / [X](https://x.com/maradeben) / [LinkedIn](https://linkedin.com/in/ebenezer-maradesa)
