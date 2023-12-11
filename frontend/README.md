@@ -1,13 +1,12 @@
 ```markdown
 
-## Farmers Market Frontend Directory
+# Farmers Market Frontend Directory
 
-   Welcome to the frontend of our E-Commerce store for farmers! The technology used is HTML, CSS, and JavaScript. To maintain code organization and facilitate scalability, please create individual components that can be easily managed and reused.
-
+Welcome to the frontend of our E-Commerce store for farmers! The technology used is HTML, CSS, and JavaScript. To maintain code organization and facilitate scalability, please create individual components that can be easily managed and reused.
 
 ## Getting Started
 
-    Follow these steps to set up and contribute to the project:
+Follow these steps to set up and contribute to the project:
 
 1. ## Clone the Repository:
 
