@@ -7,8 +7,8 @@ Welcome to the frontend of our E-Commerce store for farmers! The technology used
 
 Follow these steps to set up and contribute to the project:
 
-1. ##Clone the Repository:
-   ```bash
+1. ## Clone the Repository:
+   ```
    git clone https://github.com/maradeben/farmers-market.git
    cd frontend
    ```
