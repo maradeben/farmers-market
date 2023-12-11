@@ -1,4 +1,3 @@
-```markdown
 
 # Farmers Market Frontend Directory
 
@@ -91,4 +90,3 @@ npm install --save-dev
 ```bash
 npm run start:frontend
 ```
-``` 
