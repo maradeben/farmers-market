@@ -1,0 +1,165 @@
+/* header.css */
+html,body {
+    padding: 0;
+    margin: 0;
+}
+
+
+header {
+    background-color: #6dbe45; /* Add your preferred background color */
+    padding: 10px;
+  }
+  
+  .header-container {
+    max-width: 1200px;
+    height: 60px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .hamburger-menu {
+    display: none; /* Hide by default for larger screens */
+  }
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+  }
+  
+  .logo-text {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .farmers {
+    padding: 0;
+    margin: 0;
+  }
+
+  .market {
+    line-height: 8px; /* height of the "MARKET" text */
+    padding: 0;
+    margin-top: 0;
+    color: #ff8c00;
+    letter-spacing: 1px;
+  }
+  
+  .center-section {
+    flex-grow: 1; /* Takes up remaining space */
+    margin-left: 150px;
+  }
+  
+  .search-bar {
+    display: flex;
+    height: 35px;
+  }
+  
+  input {
+    padding: 5px;
+    margin-right: 5px;
+    width: 400px;
+    border-radius: 5px;
+  }
+  
+  .search-button {
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .search-button:hover {
+    background-color: #ff8c00;
+    transition: 0.5s ease;
+  }
+
+  .right-section {
+    display: flex;
+  }
+  
+  .search-icon {
+    display: none !important; /*hide search icon on larger screen*/
+  }
+  .profile-icon,
+  .cart-icon {
+    font-size: 35px !important;
+    margin-left: 20px;
+    cursor: pointer;
+  }
+
+  .search-icon:hover,
+  .cart-icon:hover,
+  .profile-icon:hover {
+    color: #ff8c00;
+    transition: 0.5s ease;
+  }
+  
+  /* Media Query for smaller screens */
+  @media screen and (max-width: 768px) {
+    .hamburger-menu {
+      display: block;
+      cursor: pointer;
+      margin-right: 10px;
+      font-size: 30px;
+    }
+  
+      /* styles for the mobile menu, for example: */
+
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        background-color: #333;
+        padding: 10px;
+        margin-top: 12px;
+      }
+    
+      .mobile-menu a {
+        display: block;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #ff8c00;
+      }
+
+    .left-section {
+      flex-grow: 1;
+    }
+  
+    .center-section {
+      display: none;
+    }
+  
+    .right-section {
+      margin-left: auto; /* Push to the right */
+    }
+
+    .search-icon,
+    .cart-icon {
+        font-size: 30px !important;
+        display: inline-block !important;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+
+      .profile-icon {
+        display: none !important; /*hide profile icon on smaller screen*/
+      }
+
+  }
+  
