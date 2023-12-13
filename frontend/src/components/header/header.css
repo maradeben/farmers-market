@@ -12,6 +12,7 @@ header {
   
   .header-container {
     max-width: 1200px;
+    padding: 0 20px;
     height: 60px;
     margin: 0 auto;
     display: flex;
@@ -79,6 +80,7 @@ header {
   .search-button {
     padding: 5px 10px;
     cursor: pointer;
+    margin-left: 10px;
     border-radius: 5px;
   }
   
@@ -107,9 +109,27 @@ header {
     color: #ff8c00;
     transition: 0.5s ease;
   }
+
+  @media screen and (max-width: 992px) {
+    .center-section {
+        flex-grow: 1; /* Takes up remaining space */
+        margin-left: 40px;
+      } 
+
+      input {
+        padding: 5px;
+        margin-right: 5px;
+        width: 300px;
+        border-radius: 5px;
+      }
+  }
   
   /* Media Query for smaller screens */
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 576px) {
+
+    .header-container {
+        padding: 10px;
+    }
     .hamburger-menu {
       display: block;
       cursor: pointer;
@@ -122,9 +142,10 @@ header {
       .mobile-menu {
         display: none;
         flex-direction: column;
-        background-color: #333;
+        background-color: #62af3b;
         padding: 10px;
         margin-top: 12px;
+        border-radius: 5px;
       }
     
       .mobile-menu a {
@@ -134,8 +155,14 @@ header {
         margin-bottom: 10px;
         padding: 10px;
         border-radius: 5px;
-        background-color: #ff8c00;
       }
+
+      .mobile-menu a:hover,
+.mobile-menu a:active {
+    background-color: #ff8c00; /* Change the background color on hover/active */
+    color: #fff; /* Change the text color on hover/active */
+    text-decoration: none;
+}
 
     .left-section {
       flex-grow: 1;
