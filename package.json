@@ -6,8 +6,8 @@
     "scripts": {
       "start:frontend": "webpack serve --config frontend/webpack.config.js",
       "build:frontend": "webpack --config frontend/webpack.config.js",
-      "start:backend": "echo 'Add backend start command here'",
-      "build:backend": "echo 'Add backend build command here'",
+      "start:backend": "python backend/api/v1/app.py",
+      "build:backend": "nil",
       "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
       "build": "echo 'Add overall build command here'"
     },
