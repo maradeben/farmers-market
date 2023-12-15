@@ -27,6 +27,7 @@ class BaseModel:
     
     def to_dict(self):
         the_dict = self.__dict__
-        if 'created_at' in the_dict:
+        if 'created_at' in the_dict and not isinstance(the_dict['created_at'], str):
             the_dict['created_at'] = the_dict['created_at'].strftime(time)
+        the_dict['object'] = self.__class__.__name__
         return self.__dict__
