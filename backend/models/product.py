@@ -1,11 +1,11 @@
 """ Module containing blueprint for product """
-from models.base import BaseModel
+from backend.models.base import BaseModel
 import sys
 from typing import Union
 
 
 product_categories =  ['Grains', 'Roots/Tubers', 'Fruits/Vegetables', 'Meat/Poultry', 'Oils']
-products_list = []
+products_list = {}
 
 class Product(BaseModel):
     """ Product template class, inheriting from the BaseModel
@@ -83,6 +83,8 @@ class Product(BaseModel):
             print("Invalid Product price")
             return
         self.__price = price
+        # save new price
+        self.save()
     
     # getter for quantity
     @property
@@ -97,6 +99,8 @@ class Product(BaseModel):
             print("invalid Product quantity")
             return
         self.__stock = quantity
+        # save new stocks
+        self.save()
     
     # decrement quantity on purchase
     def decr_stock(self, count: int) -> int:
@@ -147,4 +151,8 @@ class Product(BaseModel):
     
     # save the product
     def save(self):
-        products_list.append(self.to_dict())
+        products_list[self.id] = self.to_dict()
+    
+    def all(self):
+        return file_store.all()
+
