@@ -5,6 +5,7 @@ from typing import Union
 
 
 product_categories =  ['Grains', 'Roots/Tubers', 'Fruits/Vegetables', 'Meat/Poultry', 'Oils']
+products_list = []
 
 class Product(BaseModel):
     """ Product template class, inheriting from the BaseModel
@@ -111,12 +112,16 @@ class Product(BaseModel):
             return
         self.__stock -= count
         self.stock
+        # save updates
+        self.save()
     
     # increament quantity on addition of new stock
     def incr_stock(self, count: int) -> int:
         """ opposite of decr_quantity, add to stock """
         self.__stock += count
         self.stock
+        # save updates
+        self.save()
 
     # getter for rating
     @property
@@ -137,4 +142,9 @@ class Product(BaseModel):
         # increment no of ratings
         self.no_ratings += 1
         self.rating
-
+        # save updates
+        self.save()
+    
+    # save the product
+    def save(self):
+        products_list.append(self.to_dict())
