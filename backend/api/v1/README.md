@@ -148,7 +148,7 @@ curl -i http://127.0.0.1:5000/api/v1/products/grains
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Sat, 16 Dec 2023 12:43:43 GMT
+Date: Sat, 16 Dec 2023 12:48:43 GMT
 Content-Type: application/json
 Content-Length: 51464
 Access-Control-Allow-Origin: *
@@ -191,6 +191,37 @@ Connection: close
   }...
   ```
 
+**Retrieve single product**
+
+GET /api/v1/products/product/<\product_id\>
+```curl http://127.0.0.1:5000/api/v1/products/product/865eece2-fdae-489e-ba7d-c101d8b8ad3e
+```
+**Response**
+```
+HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Sat, 16 Dec 2023 12:43:43 GMT
+Content-Type: application/json
+Content-Length: 51464
+Access-Control-Allow-Origin: *
+Connection: close
+
+{
+      "category": "Grains",
+      "created_at": "2023-12-16T12:05:15.763076",
+      "id": "865eece2-fdae-489e-ba7d-c101d8b8ad3e",
+      "image_url": "frontend/assets/images/product-images/default-product-image.jpg",
+      "location": "Gombe",
+      "name": "Corn",
+      "num_ratings": 0,
+      "object": "Product",
+      "price": 4545,
+      "rating": 4.0,
+      "stock": 864,
+      "unit": "kg",
+      "vendor_id": "eebdc76c-6723-4bc3-82b2-f524ec8dd848"
+}
+```
 ___
 
 
@@ -246,4 +277,36 @@ Connection: close
     "username": "theman"
   }
 }...
+```
+**Get single vendor**
+
+
+GET api/v1/vendors/vendor/<\vendor_id\>
+```curl http://127.0.0.1:5000/api/v1/vendors/vendor/0ae197ff-be2b-4270-b6a2-d72493f79d10
+```
+**Response**
+```
+HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Sat, 16 Dec 2023 12:48:43 GMT
+Content-Type: application/json
+Content-Length: 51464
+Access-Control-Allow-Origin: *
+Connection: close
+
+{
+    "created_at": "2023-12-16T12:05:10.046280",
+    "email": "johnbull@ymail.com",
+    "farmname": "Johhny JC",
+    "firstname": "Bukola",
+    "id": "0ae197ff-be2b-4270-b6a2-d72493f79d10",
+    "lastname": "Johnson",
+    "location": "Ilorin",
+    "num_ratings": 0,
+    "object": "Vendor",
+    "phone": "858-991",
+    "pswd": "abc",
+    "rating": 3.0,
+    "username": "johns_b"
+  }
 ```
