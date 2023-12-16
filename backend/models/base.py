@@ -2,6 +2,7 @@
 """ Define the base model for other models, including users, vendors, and products """
 from datetime import datetime
 from uuid import uuid4
+from backend.database import file_store
 
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
@@ -31,3 +32,17 @@ class BaseModel:
             the_dict['created_at'] = the_dict['created_at'].strftime(time)
         the_dict['object'] = self.__class__.__name__
         return self.__dict__
+    
+    def save(self):
+        """ initially save a newly initialized object for the first time """
+        pass
+    
+    def update(self):
+        """ update an object when changes have been made """
+        key = self.id
+        print("\n\nUpdating...", key)
+        # print(file_store.all_products[self.id])
+        if self.__class__.__name__ == 'Product':
+            file_store.all_products[key] = self.to_dict()
+        elif self.__class__.__name__ == 'Vendor':
+            file_store.all_vendors[key] = self.to_dict()

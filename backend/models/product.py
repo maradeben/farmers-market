@@ -1,11 +1,11 @@
 """ Module containing blueprint for product """
 from backend.models.base import BaseModel
+from backend.database import file_store
 import sys
 from typing import Union
 
 
 product_categories =  ['Grains', 'Roots/Tubers', 'Fruits/Vegetables', 'Meat/Poultry', 'Oils']
-products_list = {}
 
 class Product(BaseModel):
     """ Product template class, inheriting from the BaseModel
@@ -15,6 +15,7 @@ class Product(BaseModel):
         name(str): product name
         category(str): category of the product
         price(float): price of product
+        unit(str): unit of measurement, e.g., bag, kg
         stock(int): quantity in stock
         vendor(str): the seller of the product
         rating(float): product rating
@@ -22,53 +23,77 @@ class Product(BaseModel):
     Methods:
     """
 
-    def __init__(self, name: str=None, category: str=None, price: float=None, stock: int=None,
+    def __init__(self, name: str=None, category: str=None, price: float=None, unit: str=None, stock: int=None,
                   vendor_id: str=None, **kwargs) -> None:
         """ Initializing function """
         if kwargs:
             for key, value in kwargs.items():
                 if key == 'name':
-                    name = kwargs.get('name')
+                    name = value
                 elif key == 'category':
-                    category = kwargs.get('category')
+                    category = value
                 elif key == 'price':
-                    price = kwargs.get('price')
+                    price = value
+                elif key == 'unit':
+                    unit = value
                 elif key == 'stock':
-                    stock = kwargs.get('stock')
+                    stock = value
                 elif key == 'vendor_id':
-                    vendor_id = kwargs.get('vendor_id')
+                    vendor_id = value
                 else:
-                    print(f"Invalid Product attribute: {key}")
-                    return
-        else:
-            if not all([name, category, price, stock, vendor_id]):
-                print("Incomplete values")
-                return
-            if not isinstance(name, str):
-                print("Product name must be of type 'str'")
-                return
-            if not isinstance(category, str) or category not in product_categories:
-                print(f"Invalid Product category: {category}")
-                return
-            if not isinstance(price, (int, float)):
-                print("Product price must be of type 'int' or 'float'")
-                return
-            if not isinstance(stock, int):
-                print("Product stock must be of type 'int'")
-                return
-            if not isinstance(vendor_id, str):
-                print("Product vendor id must be of type 'str'")
-                return
+                    raise AttributeError(f"Invalid Product attribute: {key}")
+                
+        if not all([name, category, price, unit, stock, vendor_id]):
+            raise ValueError("Incomplete values")
+        if not isinstance(name, str):
+            raise TypeError("Product name must be of type 'str'")
+        if not isinstance(category, str):
+            raise TypeError("Product category must be of type 'str")
+        if category not in product_categories:
+            raise ValueError(f"Invalid Product category: {category}")
+        if not isinstance(price, (int, float)):
+            raise TypeError("Product price must be of type 'int' or 'float'")
+        if not isinstance(unit, str):
+            raise TypeError("Product unit must be of type 'str'")
+        if not isinstance(stock, int):
+            raise TypeError("Product stock must be of type 'int'")
+        if not isinstance(vendor_id, str):
+            raise TypeError("Product vendor id must be of type 'str'")
 
         super().__init__()
         self.name = name
         self.category = category
         self.__price = price
+        self.unit = unit
         self.__stock = stock
         self.vendor_id = vendor_id
         self.__rating = 0 # rating is initially 0
-        self.no_ratings = 0
+        self.num_ratings = 0
+
+        # print('\n\nInitializing...', self.id)
+        self.save()
     
+
+    def save(self):
+        """ save a newly initialized product """
+
+        key = self.id
+        # print('\n\nSaving', self.id)
+        # construct a token from name, category, and vendor_id
+        token = f"{self.name}-{self.category}-{self.vendor_id}"
+        all_objects = file_store.all()
+        if all_objects and all_objects['products']:
+            products = all_objects['products']
+            all_tokens = [f"{value['name']}-{value['category']}-{value['vendor_id']}"\
+                            for key, value in products.items()]
+            if token in all_tokens:
+                return("Product exists. Update instead")
+            else:
+                file_store.all_products[key] = self.to_dict()
+        else:
+            file_store.all_products[key] = self.to_dict()
+
+
     # getter for price
     @property
     def price(self):
@@ -80,11 +105,10 @@ class Product(BaseModel):
     def price(self, price: Union[int, float]):
         """ update price """
         if not price or not isinstance(price, (int, float)):
-            print("Invalid Product price")
-            return
+            raise TypeError("Invalid Product price")
         self.__price = price
         # save new price
-        self.save()
+        self.update()
     
     # getter for quantity
     @property
@@ -100,7 +124,7 @@ class Product(BaseModel):
             return
         self.__stock = quantity
         # save new stocks
-        self.save()
+        self.update()
     
     # decrement quantity on purchase
     def decr_stock(self, count: int) -> int:
@@ -117,7 +141,7 @@ class Product(BaseModel):
         self.__stock -= count
         self.stock
         # save updates
-        self.save()
+        self.update()
     
     # increament quantity on addition of new stock
     def incr_stock(self, count: int) -> int:
@@ -125,7 +149,7 @@ class Product(BaseModel):
         self.__stock += count
         self.stock
         # save updates
-        self.save()
+        self.update()
 
     # getter for rating
     @property
@@ -142,17 +166,14 @@ class Product(BaseModel):
             the new average rating
         """
         # compute new average rating
-        self.__rating = ((self.no_ratings * self.__rating) + new_rating) / (self.no_ratings + 1)
+        self.__rating = ((self.num_ratings * self.__rating) + new_rating) / (self.num_ratings + 1)
         # increment no of ratings
-        self.no_ratings += 1
+        self.num_ratings += 1
         self.rating
         # save updates
-        self.save()
+        self.update()
     
-    # save the product
-    def save(self):
-        products_list[self.id] = self.to_dict()
-    
-    def all(self):
-        return file_store.all()
+    # def all(self):
+    #     """ get all products """
+    #     return file_store.all()['products']
 
