@@ -1,13 +1,15 @@
 """ Module containing blueprint for product """
 from backend.models.base import BaseModel
+from models import vendor as ven
 from backend.database import file_store
 import sys
+from mongoengine import * 
 from typing import Union
 
 
 product_categories =  ['Grains', 'Roots/Tubers', 'Fruits/Vegetables', 'Meat/Poultry', 'Oils']
 
-class Product(BaseModel):
+class Product(BaseModel, DynamicDocument):
     """ Product template class, inheriting from the BaseModel
 
     Attributes:
@@ -25,9 +27,25 @@ class Product(BaseModel):
     Methods:
     """
 
+<<<<<<< HEAD
     def __init__(self, name: str=None, category: str=None, price: float=None, unit: str=None, stock: int=None,
                   vendor_id: str=None, rating: int=0,
                   image_url: str = 'frontend/assets/images/product-images/default-product-image.jpg', **kwargs) -> None:
+=======
+    name = StringField(required=True)
+    price = FloatField(required=True)
+    unit = StringField(required=True)
+    category = StringField(required=True)
+    stock = StringField(required=True)
+    vendor_id = StringField(required=True)
+    
+    meta = {
+        'db_alias': 'core',
+        'collection': 'products'
+    }
+
+    def __init__(self, **kwargs) -> None:
+>>>>>>> dba68590eba0977d2198c36c3102f41f884cf508
         """ Initializing function """
         if kwargs:
             for key, value in kwargs.items():
