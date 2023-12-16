@@ -1,0 +1,5 @@
+.*.swp
+fmarket
+backend/main_test.py
+mock_data.ipynb
+__pycache__/
