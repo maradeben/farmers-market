@@ -17,14 +17,17 @@ class Product(BaseModel):
         price(float): price of product
         unit(str): unit of measurement, e.g., bag, kg
         stock(int): quantity in stock
-        vendor(str): the seller of the product
+        vendor_id(str): the seller of the product
         rating(float): product rating
+        location(str): the location of the product, based on vendor's location
+        image(str): path to the image
     
     Methods:
     """
 
     def __init__(self, name: str=None, category: str=None, price: float=None, unit: str=None, stock: int=None,
-                  vendor_id: str=None, **kwargs) -> None:
+                  vendor_id: str=None, rating: int=0,
+                  image_url: str = 'frontend/assets/images/product-images/default-product-image.jpg', **kwargs) -> None:
         """ Initializing function """
         if kwargs:
             for key, value in kwargs.items():
@@ -40,10 +43,14 @@ class Product(BaseModel):
                     stock = value
                 elif key == 'vendor_id':
                     vendor_id = value
+                elif key == 'rating':
+                    rating = value
+                elif key == 'image_url':
+                    image_url = value
                 else:
                     raise AttributeError(f"Invalid Product attribute: {key}")
                 
-        if not all([name, category, price, unit, stock, vendor_id]):
+        if not all([name, category, price, unit, stock, vendor_id, rating]):
             raise ValueError("Incomplete values")
         if not isinstance(name, str):
             raise TypeError("Product name must be of type 'str'")
@@ -59,6 +66,10 @@ class Product(BaseModel):
             raise TypeError("Product stock must be of type 'int'")
         if not isinstance(vendor_id, str):
             raise TypeError("Product vendor id must be of type 'str'")
+        if not isinstance(rating, float):
+            raise TypeError("Product rating must be of type 'int'")
+        if not isinstance(image_url, str):
+            raise(TypeError("Product image_url path must be of type 'str'"))
 
         super().__init__()
         self.name = name
@@ -67,8 +78,10 @@ class Product(BaseModel):
         self.unit = unit
         self.__stock = stock
         self.vendor_id = vendor_id
-        self.__rating = 0 # rating is initially 0
+        self.__rating = rating # rating is initially 0
         self.num_ratings = 0
+        self.location = self.get_location()
+        self.image_url = image_url
 
         # print('\n\nInitializing...', self.id)
         self.save()
@@ -173,7 +186,8 @@ class Product(BaseModel):
         # save updates
         self.update()
     
-    # def all(self):
-    #     """ get all products """
-    #     return file_store.all()['products']
+    def get_location(self):
+        """ retrieve the location of a product, which is the location of the vendor """
+        vendor = file_store.get_single_vendor(self.vendor_id)
+        return vendor['location']
 

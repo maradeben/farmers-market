@@ -21,8 +21,9 @@ class Vendor(BaseModel):
 
     """
 
-    def __init__(self, phone: str=None, email: str=None, firstname: str=None,
-                  lastname: str=None, username: str = None, farmname: str=None, location: str=None, **kwargs):
+    def __init__(self, phone: str=None, email: str=None, firstname: str=None, lastname: str=None,
+                    username: str=None, farmname: str=None, location: str=None,
+                    rating: float=0, pswd: str='', **kwargs):
         """ initialize a Vendor. Can be done by passing positional arguments,
         or by passing a dict of keyword arguments"""
 
@@ -42,17 +43,24 @@ class Vendor(BaseModel):
                     farmname = value
                 elif key == 'location':
                     location = value
+                elif key == 'rating':
+                    rating = value
+                elif key == 'pswd':
+                    pswd = value
                 else:
                     raise ValueError("Invalid Vendor parameter")
 
-        if not all([phone, email, firstname, lastname, username, farmname, location]):
+        if not all([phone, email, firstname, lastname, username, farmname, location, rating, pswd]):
             raise ValueError("Incomplete credentials")
         
-        if not all(isinstance(var, str) for var in (phone, email, firstname, lastname, username, farmname, location)):
+        if not all(isinstance(var, str) for var in 
+                    (phone, email, firstname, lastname, username, farmname, location, pswd)):
             raise TypeError("Invalid type entered for vendor parameter. Must be string")
+        if not isinstance(rating, float):
+            raise TypeError("Invalid type entered for vendor parameter 'rating'. Must be float")
     
         super().__init__()
-        self.rating = 0
+        self.rating = rating
         self.num_ratings = 0
         self.phone = phone
         self.email = email
@@ -61,6 +69,7 @@ class Vendor(BaseModel):
         self.username = username
         self.farmname = farmname
         self.location = location
+        self.__pswd = pswd
 
         self.save()
     
