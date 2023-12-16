@@ -18,7 +18,9 @@ def categories():
 @app_views.route('products/top-selling', methods=['GET'], strict_slashes=False)
 def top_selling():
     """ return the top selling products """
-    return jsonify(file_store.get_products())
+    top = file_store.get_products()
+    top_ten = {k:top[k] for k in list(top.keys())[:10]}
+    return jsonify(top_ten)
 
 @app_views.route('/products/', methods=['GET'], strict_slashes=False)
 @app_views.route('/products/<cat_name>', methods=['GET'], strict_slashes=False)
