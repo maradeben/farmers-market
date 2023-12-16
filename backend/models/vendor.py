@@ -34,8 +34,7 @@ class Vendor(BaseModel):
         'collection': 'vendors'
     }
 
-    def __init__(self, phone: str=None, email: str=None, firstname: str=None,
-                  lastname: str=None, username: str = None, farmname: str=None, location: str=None, **kwargs):
+    def __init__(self, **kwargs):
         """ initialize a Vendor. Can be done by passing positional arguments,
         or by passing a dict of keyword arguments"""
 

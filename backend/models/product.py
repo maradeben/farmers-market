@@ -28,17 +28,16 @@ class Product(BaseModel, DynamicDocument):
     name = StringField(required=True)
     price = FloatField(required=True)
     unit = StringField(required=True)
-    category = 
+    category = StringField(required=True)
     stock = StringField(required=True)
-    vendor_id = models.ForeignKey("app.Model", verbose_name=_(""), on_delete=models.CASCADE)
+    vendor_id = StringField(required=True)
     
     meta = {
         'db_alias': 'core',
         'collection': 'products'
     }
 
-    def __init__(self, name: str=None, category: str=None, price: float=None, unit: str=None, stock: int=None,
-                  vendor_id: str=None, **kwargs) -> None:
+    def __init__(self, **kwargs) -> None:
         """ Initializing function """
         if kwargs:
             for key, value in kwargs.items():
