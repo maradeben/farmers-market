@@ -193,7 +193,7 @@ Connection: close
 
 **Retrieve single product**
 
-GET /api/v1/products/product/<\product_id\>
+GET /api/v1/products/product/\<product_id\>
 ```curl http://127.0.0.1:5000/api/v1/products/product/865eece2-fdae-489e-ba7d-c101d8b8ad3e
 ```
 **Response**
@@ -281,7 +281,7 @@ Connection: close
 **Get single vendor**
 
 
-GET api/v1/vendors/vendor/<\vendor_id\>
+GET api/v1/vendors/vendor/\<vendor_id\>
 ```curl http://127.0.0.1:5000/api/v1/vendors/vendor/0ae197ff-be2b-4270-b6a2-d72493f79d10
 ```
 **Response**
