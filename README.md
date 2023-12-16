@@ -6,6 +6,7 @@ _Built as the final Webstack Portfolio Project in the ALX/Holberton Full Stack S
 ## Table of Content
 * [Basic Features](#features)
 * [Technologies](#technologies)
+* [API Docs](#api)
 * [Authors](#authors)
 
 
@@ -37,6 +38,8 @@ These are centered around the end-users of the product, thus:
 * Python: Flask, SQLAlchemy, etc.
 * MySQL
 
+## API Docs
+[See API Docs](backend/api/v1/README.md)
 
 ## Authors
 
