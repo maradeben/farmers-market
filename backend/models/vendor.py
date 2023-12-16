@@ -2,6 +2,7 @@
 """ Set up basic template for a vendor """
 from backend.models.base import BaseModel
 from backend.database import file_store
+import mongoengine 
 
 
 class Vendor(BaseModel):
@@ -20,6 +21,18 @@ class Vendor(BaseModel):
     Methods:
 
     """
+ 
+    phone = mongoengine.StringField(required=True)
+    email = mongoengine.EmailField(required=True)
+    firstname = mongoengine.StringField(required=True)
+    lastname = mongoengine.StringField(required=True)
+    username = mongoengine.StringField(required=True)
+    farmname = mongoengine.StringField(required=True)
+    location = mongoengine.StringField(required=True)
+    meta = {
+        'db_alias': 'core',
+        'collection': 'vendors'
+    }
 
     def __init__(self, phone: str=None, email: str=None, firstname: str=None,
                   lastname: str=None, username: str = None, farmname: str=None, location: str=None, **kwargs):
