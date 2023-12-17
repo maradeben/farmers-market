@@ -1,5 +1,7 @@
 .*.swp
 fmarket
 backend/main_test.py
-mock_data.ipynb
+*.ipynb
 __pycache__/
+mongo_tut.py
+node_modules/
