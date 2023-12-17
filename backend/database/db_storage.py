@@ -19,18 +19,26 @@ class DBStorage:
 
     def __new__(cls):
         if not cls._instance:
-            cls._instance = super(DB_Store, cls).__new__(cls)
+            cls._instance = super(DBStorage, cls).__new__(cls)
             cls._instance.connect()
         return cls._instance
     
     @classmethod
     def connect(cls):
-        mongoengine.register_connection(alias='core', name=cls.db_name, host=cls.host, port=cls.port)
-        mongoengine.connect(cls.db_name, alias='core')
+        mongoengine.register_connection(alias='default', name=cls.db_name, host=cls.host, port=cls.port)
+        mongoengine.connect(cls.db_name, alias='default')
 
     @classmethod
     def close_connection(cls):
-        mongoengine.disconnect(cls.db_name)
+        mongoengine.disconnect(alias='default')
+    
+    @classmethod
+    def clear_storage(cls):
+        """ clear the database """
+        mongoengine.disconnect(alias='core')
+        cls.connect()  # reconnect if needed
+        mongoengine.connection.get_connection().drop_database(cls.db_name)
+        cls.close_connection()
 
 
-engine = DB_Store()
+storage_engine = DBStorage()

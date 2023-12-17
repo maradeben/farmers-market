@@ -1,17 +1,21 @@
 """ Module containing blueprint for product """
 from mongoengine import DynamicDocument, IntField, StringField, ReferenceField,\
     DateTimeField, FloatField, EmailField, ListField
-from models.vendor import Vendor
-from backend.database import file_store
-import sys
-from typing import Union
 from mongoengine.errors import NotUniqueError
 from pymongo.errors import DuplicateKeyError
+
+from backend.models.vendor import Vendor
+from backend.database import file_store
+from backend.models.utils import DuplicateProductError
+
+import sys
+from typing import Union
+
 
 
 product_categories =  ['Grains', 'Roots/Tubers', 'Fruits/Vegetables', 'Meat/Poultry', 'Oils']
 
-class Product(BaseModel, DynamicDocument):
+class Product(DynamicDocument):
     """ Product template class, inheriting from the BaseModel
 
     Attributes:
@@ -32,13 +36,14 @@ class Product(BaseModel, DynamicDocument):
     name = StringField(required=True)
     price = FloatField(required=True)
     unit = StringField(required=True)
-    category = StringField(required=True)
+    category = StringField(required=True, choices=product_categories)
     stock = IntField(required=True)
     vendor = ReferenceField(Vendor, required=True)
     rating = FloatField(required=True)
     num_ratings = IntField(required=True, default=0)
     image_url = ListField(StringField(), required=True,
             default=['frontend/assets/images/product-images/default-product-image.jpg'])
+    created_at = DateTimeField(required=True, default=datetime.datetime.now())
     
     meta = {
         'collection': 'products'
@@ -49,8 +54,36 @@ class Product(BaseModel, DynamicDocument):
     def __init__(self, **kwargs):
         # default init to create the object
         super(Product, self).__init__(**kwargs)
-        self.save()
+    
+    def exists(self, name, category, vendor, stock):
+        """ if product exists, raise exception, if not, return False """
+        existing_product = Product.objects(name=name, category=category, vendor=vendor, stock=stock)
+        if existing_product:
+            raise DuplicateProductError(message="This product exists")
+        return False
 
+
+# function to bundle creating and saving product, with duplicate validation
+def product_create_save(**kwargs):
+    """ bundle creation and saving of product """
+    product = Product(**kwargs)
+    is_existing = False
+
+    try:
+        is_existing = product.exists(product.name, product.category, product.vendor, product.stock)
+    except DuplicateProductError as e:
+        print("Product error:", e)
+    if not is_existing:
+        product.save()
+        return product
+
+
+
+'''
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
 
 
 
@@ -219,3 +252,5 @@ class Product(BaseModel, DynamicDocument):
             """ retrieve the location of a product, which is the location of the vendor """
             vendor = file_store.get_single_vendor(self.vendor_id)
             return vendor['location']
+
+'''

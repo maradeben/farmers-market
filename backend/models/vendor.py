@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """ Set up basic template for a vendor """
-from backend.database import file_store
 from mongoengine import DynamicDocument, IntField, StringField,\
     ReferenceField, DateTimeField, FloatField, EmailField, ListField
 from mongoengine.errors import NotUniqueError
 from pymongo.errors import DuplicateKeyError
+
+import datetime
 
 
 class Vendor(DynamicDocument):
@@ -44,6 +45,13 @@ class Vendor(DynamicDocument):
         # default init to create the object
         super(Vendor, self).__init__(**kwargs)
         self.save()
+
+
+'''
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
+______________________________________________________________________________________________________
 
 
 
@@ -115,3 +123,4 @@ class Vendor(DynamicDocument):
                     file_store.all_vendors[key] = self.to_dict()
             else:
                 file_store.all_vendors[key] = self.to_dict()
+'''
