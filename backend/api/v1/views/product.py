@@ -1,8 +1,11 @@
 #!/usr/bin/env python3.9
 
-from backend.models.product import Product, product_categories
-from backend.database import file_store
+# from backend.models.product import Product, product_categories
+# from backend.database import file_store
 from backend.api.v1.views import app_views
+
+from backend.database.product_ops import *
+
 from flask import jsonify
 
 @app_views.route('products/categories', methods=['GET'], strict_slashes=False)
@@ -18,9 +21,7 @@ def categories():
 @app_views.route('products/top-selling', methods=['GET'], strict_slashes=False)
 def top_selling():
     """ return the top selling products """
-    top = file_store.get_products()
-    top_ten = {k:top[k] for k in list(top.keys())[:10]}
-    return jsonify(top_ten)
+    return get_products()
 
 @app_views.route('/products/', methods=['GET'], strict_slashes=False)
 @app_views.route('/products/<cat_name>', methods=['GET'], strict_slashes=False)
