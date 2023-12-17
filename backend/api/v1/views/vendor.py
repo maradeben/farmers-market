@@ -10,3 +10,11 @@ from flask import jsonify
 def top_vendors():
     """ return top vendors """
     return jsonify(file_store.get_vendors())
+
+@app_views.route('vendors/vendor/<vendor_id>', methods=['GET'], strict_slashes=False)
+def single_vendor(vendor_id: str):
+    """ retrieve a single vector by id """
+    try:
+        return jsonify(file_store.get_single_vendor(vendor_id))
+    except KeyError:
+        abort(404, description="Vendor not found")

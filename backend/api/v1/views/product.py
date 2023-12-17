@@ -29,3 +29,10 @@ def products(cat_name=None):
     """ retrieve products of a particular category """
     return jsonify(file_store.get_products(cat_name))
 
+@app_views.route('/products/product/<product_id>', methods=['GET'], strict_slashes=False)
+def single_product(product_id: str):
+    """ return a single product based on the id passed """
+    try:
+        return jsonify(file_store.get_single_product(product_id))
+    except KeyError:
+        abort(404, description="Product not found")

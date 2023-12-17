@@ -6,7 +6,8 @@ _Built as the final Webstack Portfolio Project in the ALX/Holberton Full Stack S
 ## Table of Content
 * [Basic Features](#features)
 * [Technologies](#technologies)
-* [API Docs](#api)
+* [Database](#database)
+* [API Docs](#api-docs)
 * [Authors](#authors)
 
 
@@ -35,8 +36,20 @@ These are centered around the end-users of the product, thus:
 * Javascript: jQuery, ReactJS
 
 ### Backend
-* Python: Flask, SQLAlchemy, etc.
-* MySQL
+* Python: Flask, SQLAlchemy, mongoengine etc.
+* MongoDB
+
+## Database
+MongoDB database was used for this project
+**Associated Files**
+- db_dump.sh : creates a snapshot of the mongodb database for this project
+- db_restore.sh : loads a dumped database.
+
+These are intended for the production environment for sharing data between developers.
+
+[DB backup path]('./backend/database/mongo-backup')
+
+
 
 ## API Docs
 [See API Docs](backend/api/v1/README.md)

@@ -7,7 +7,9 @@
 ## Products
 API Routes for Products:
 
+
 **Get product categories**
+
 GET /api/v1/products/categories
 ```
 curl -i http://127.0.0.1:5000/api/v1/products/categories
@@ -16,7 +18,7 @@ curl -i http://127.0.0.1:5000/api/v1/products/categories
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Sat, 16 Dec 2023 01:36:13 GMT
+Date: Sat, 16 Dec 2023 12:36:22 GMT
 Content-Type: application/json
 Content-Length: 84
 Access-Control-Allow-Origin: *
@@ -31,7 +33,9 @@ Connection: close
 ]
 ```
 
+
 **Top selling products**
+
 GET /api/v1/products/top-selling
 ```
 curl -i http://127.0.0.1:5000/api/v1/products/top-selling
@@ -40,44 +44,50 @@ curl -i http://127.0.0.1:5000/api/v1/products/top-selling
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Sat, 16 Dec 2023 01:41:29 GMT
+Date: Sat, 16 Dec 2023 12:37:29 GMT
 Content-Type: application/json
-Content-Length: 4078
+Content-Length: 4873
 Access-Control-Allow-Origin: *
 Connection: close
 
 {
-  "244d548a-caf7-43a4-9412-802d99bd1f5f": {
-    "_Product__price": 8381,
-    "_Product__rating": 0,
-    "_Product__stock": 882,
-    "category": "Meat/Poultry",
-    "created_at": "2023-12-16T00:38:25.805169",
-    "id": "244d548a-caf7-43a4-9412-802d99bd1f5f",
-    "name": "Beef",
+  "1c7392a8-65bc-4c75-984b-aa2e5f7a5a8d": {
+    "category": "Fruits/Vegetables",
+    "created_at": "2023-12-16T12:05:15.760704",
+    "id": "1c7392a8-65bc-4c75-984b-aa2e5f7a5a8d",
+    "image_url": "frontend/assets/images/product-images/default-product-image.jpg",
+    "location": "Abuja",
+    "name": "Tomato",
     "num_ratings": 0,
     "object": "Product",
-    "unit": "kg",
-    "vendor_id": "8f4c6d2b-817c-479d-9c04-de5f3b96db34"
-  },
-  ...,
-  "ee7835b6-645d-410b-99ba-d4a40a2873d7": {
-    "_Product__price": 1614,
-    "_Product__rating": 0,
-    "_Product__stock": 748,
-    "category": "Roots/Tubers",
-    "created_at": "2023-12-16T00:38:25.803841",
-    "id": "ee7835b6-645d-410b-99ba-d4a40a2873d7",
-    "name": "Beetroot",
-    "num_ratings": 0,
-    "object": "Product",
+    "price": 1939,
+    "rating": 3.0,
+    "stock": 843,
     "unit": "unit",
-    "vendor_id": "f63140de-e677-4c6f-9888-51ff7c6ebc32"
+    "vendor_id": "d2366f15-ce6a-4e49-a694-3a58cbf1ec01"
+  },
+  ...
+  "865eece2-fdae-489e-ba7d-c101d8b8ad3e": {
+    "category": "Grains",
+    "created_at": "2023-12-16T12:05:15.763076",
+    "id": "865eece2-fdae-489e-ba7d-c101d8b8ad3e",
+    "image_url": "frontend/assets/images/product-images/default-product-image.jpg",
+    "location": "Gombe",
+    "name": "Corn",
+    "num_ratings": 0,
+    "object": "Product",
+    "price": 4545,
+    "rating": 4.0,
+    "stock": 864,
+    "unit": "kg",
+    "vendor_id": "eebdc76c-6723-4bc3-82b2-f524ec8dd848"
   }
 }
 ```
 
+
 **Retrieve Products**
+
 GET /api/v1/products
 ```
 curl -i http://127.0.0.1:5000/api/v1/products/
@@ -86,38 +96,51 @@ curl -i http://127.0.0.1:5000/api/v1/products/
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Sat, 16 Dec 2023 01:44:29 GMT
+Date: Sat, 16 Dec 2023 12:37:29 GMT
 Content-Type: application/json
-Content-Length: ...
+Content-Length: 4873
 Access-Control-Allow-Origin: *
 Connection: close
-...
-"c99c4d59-415e-42ca-a20d-43664611dc45": {
-    "_Product__price": 12818,
-    "_Product__rating": 0,
-    "_Product__stock": 604,
-    "category": "Meat/Poultry",
-    "created_at": "2023-12-16T00:38:25.820584",
-    "id": "c99c4d59-415e-42ca-a20d-43664611dc45",
-    "name": "Vension",
+
+{
+  "1c7392a8-65bc-4c75-984b-aa2e5f7a5a8d": {
+    "category": "Fruits/Vegetables",
+    "created_at": "2023-12-16T12:05:15.760704",
+    "id": "1c7392a8-65bc-4c75-984b-aa2e5f7a5a8d",
+    "image_url": "frontend/assets/images/product-images/default-product-image.jpg",
+    "location": "Abuja",
+    "name": "Tomato",
     "num_ratings": 0,
     "object": "Product",
-    "unit": "kg",
-    "vendor_id": "a6c0a3c8-ff1f-4c64-b55c-3fa2b21a64d0"
-  }...
+    "price": 1939,
+    "rating": 3.0,
+    "stock": 843,
+    "unit": "unit",
+    "vendor_id": "d2366f15-ce6a-4e49-a694-3a58cbf1ec01"
+  },
+  "1ceb078f-983b-4524-9f38-a59ff1022320": {
+    "category": "Meat/Poultry",
+    "created_at": "2023-12-16T12:05:15.761206",
+    "id": "1ceb078f-983b-4524-9f38-a59ff1022320",
+    "image_url": "frontend/assets/images/product-images/default-product-image.jpg"...
+  }
+}
  
 ```
 
-**Retrieve Products**
-GET /api/v1/products/<category>
+**Retrieve Products by category**
+
+GET /api/v1/products/\<category\>
+
 Where category is the product's category so:
-*category_routes = {*
-            *'fruits-veggies': 'Fruits/Vegetables',*
-            *'grains': 'Grains',*
-            *'oils': 'Oils',*
-            *'meat-poultry': 'Meat/Poultry',*
-            *'roots-tubers': 'Roots/Tubers'*
-        }
+
+*category_routes = {*  
+    *'fruits-veggies': 'Fruits/Vegetables',*  
+    *'grains': 'Grains',*  
+    *'oils': 'Oils',*  
+    *'meat-poultry': 'Meat/Poultry',*  
+    *'roots-tubers': 'Roots/Tubers'*  
+  *}*
 ```
 curl -i http://127.0.0.1:5000/api/v1/products/grains
 ```
@@ -125,47 +148,58 @@ curl -i http://127.0.0.1:5000/api/v1/products/grains
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Sat, 16 Dec 2023 01:50:29 GMT
+Date: Sat, 16 Dec 2023 12:43:43 GMT
 Content-Type: application/json
-Content-Length: ...
+Content-Length: 51464
 Access-Control-Allow-Origin: *
 Connection: close
+
+[
   {
-    "118b8804-e416-434a-b5fa-7bfbe96fd380": {
-      "_Product__price": 9987,
-      "_Product__rating": 0,
-      "_Product__stock": 350,
+    "8426cc5d-dbee-4e1c-b514-fe445fb66129": {
       "category": "Grains",
-      "created_at": "2023-12-16T00:38:25.873561",
-      "id": "118b8804-e416-434a-b5fa-7bfbe96fd380",
-      "name": "Wheat",
-      "num_ratings": 0,
-      "object": "Product",
-      "unit": "kg",
-      "vendor_id": "a6eb4c02-aae8-4966-9dc7-e23d7ffaf9ac"
-    }
-  },
-  {
-    "a5739f73-75a4-4f74-a3fa-4939e3ba00ee": {
-      "_Product__price": 8438,
-      "_Product__rating": 0,
-      "_Product__stock": 534,
-      "category": "Grains",
-      "created_at": "2023-12-16T00:38:25.873862",
-      "id": "a5739f73-75a4-4f74-a3fa-4939e3ba00ee",
+      "created_at": "2023-12-16T12:05:15.762180",
+      "id": "8426cc5d-dbee-4e1c-b514-fe445fb66129",
+      "image_url": "frontend/assets/images/product-images/default-product-image.jpg",
+      "location": "Abuja",
       "name": "Corn",
       "num_ratings": 0,
       "object": "Product",
-      "unit": "litre",
-      "vendor_id": "f63140de-e677-4c6f-9888-51ff7c6ebc32"
+      "price": 2356,
+      "rating": 5.0,
+      "stock": 841,
+      "unit": "unit",
+      "vendor_id": "d2366f15-ce6a-4e49-a694-3a58cbf1ec01"
     }
-  }
+  },
+  {
+    "865eece2-fdae-489e-ba7d-c101d8b8ad3e": {
+      "category": "Grains",
+      "created_at": "2023-12-16T12:05:15.763076",
+      "id": "865eece2-fdae-489e-ba7d-c101d8b8ad3e",
+      "image_url": "frontend/assets/images/product-images/default-product-image.jpg",
+      "location": "Gombe",
+      "name": "Corn",
+      "num_ratings": 0,
+      "object": "Product",
+      "price": 4545,
+      "rating": 4.0,
+      "stock": 864,
+      "unit": "kg",
+      "vendor_id": "eebdc76c-6723-4bc3-82b2-f524ec8dd848"
+    }
+  }...
   ```
 
+___
+
+
 ## Vendors
+
 API Routes for Vendors
 
-**Retrieve Top Wonders**
+**Retrieve Top Vendors**
+
 GET /api/v1/vendors/top-vendors
 ```
  curl -i http://127.0.0.1:5000/api/v1/vendors/top-vendors
@@ -174,27 +208,42 @@ GET /api/v1/vendors/top-vendors
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Sat, 16 Dec 2023 01:55:04 GMT
+Date: Sat, 16 Dec 2023 12:46:01 GMT
 Content-Type: application/json
-Content-Length: 4088
+Content-Length: 4298
 Access-Control-Allow-Origin: *
 Connection: close
 
 {
-  "1dc52116-2b4c-4782-bbe9-fac26d65dc48": {
-    "created_at": "2023-12-16T00:38:19.123042",
-    "email": "ahmad.h@coldmail.com",
-    "farmname": "Amida Farm",
-    "firstname": "Hamida",
-    "id": "1dc52116-2b4c-4782-bbe9-fac26d65dc48",
-    "lastname": "Ahmad",
-    "location": "Otukpo",
+  "0ae197ff-be2b-4270-b6a2-d72493f79d10": {
+    "created_at": "2023-12-16T12:05:10.046280",
+    "email": "johnbull@ymail.com",
+    "farmname": "Johhny JC",
+    "firstname": "Bukola",
+    "id": "0ae197ff-be2b-4270-b6a2-d72493f79d10",
+    "lastname": "Johnson",
+    "location": "Ilorin",
     "num_ratings": 0,
     "object": "Vendor",
-    "phone": "444-555",
-    "rating": 0,
-    "username": "amida"
-  }...
-}
-
+    "phone": "858-991",
+    "pswd": "abc",
+    "rating": 3.0,
+    "username": "johns_b"
+  },
+  "27668390-8529-4658-8f58-b75cc3d0b152": {
+    "created_at": "2023-12-16T12:05:10.046677",
+    "email": "ephman@cabmail.com",
+    "farmname": "Ephraim&Manasseh",
+    "firstname": "Ephraim",
+    "id": "27668390-8529-4658-8f58-b75cc3d0b152",
+    "lastname": "Manasseh",
+    "location": "Nsukka",
+    "num_ratings": 0,
+    "object": "Vendor",
+    "phone": "999-124",
+    "pswd": "abc",
+    "rating": 4.0,
+    "username": "theman"
+  }
+}...
 ```
