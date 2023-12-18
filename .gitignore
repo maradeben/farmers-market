@@ -1,3 +1,7 @@
-__pycache__/
+.*.swp
+fmarket
+backend/main_test.py
 *.ipynb
-node_modules
+__pycache__/
+mongo_tut.py
+node_modules/

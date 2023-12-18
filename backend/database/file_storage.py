@@ -65,9 +65,20 @@ class FileStorage:
         cat = cat_routes[cat]
         return [{k:v} for k,v in products.items() if v['category'] == cat]
     
+    def get_single_product(self, product_id: str) -> dict:
+        """ retrieve a single product """
+        products = self.get_products()
+        
+        return products[product_id]
+    
     def get_vendors(self) -> list:
         """ retrieve vendors """
         return self.all()['vendors']
+    
+    def get_single_vendor(self, vendor_id: str) -> dict:
+        """ retrieve a single vendor """
+        vendors = self.get_vendors()
+        return vendors[vendor_id]
 
     def clear_storage(self):
         """ clear all saved objects from the storage """
