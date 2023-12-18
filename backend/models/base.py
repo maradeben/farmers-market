@@ -31,6 +31,14 @@ class BaseModel:
         if 'created_at' in the_dict and not isinstance(the_dict['created_at'], str):
             the_dict['created_at'] = the_dict['created_at'].strftime(time)
         the_dict['object'] = self.__class__.__name__
+
+        # rename the keys in private properties to exclude class name
+        keys = list(the_dict.keys())  # keys extracted first to avoid 'key change during iteration' errors
+        for key in keys:
+            if key.startswith('_'):
+                new_key = key.split('_')[-1]
+                the_dict[new_key] = the_dict.pop(key)
+        
         return self.__dict__
     
     def save(self):
