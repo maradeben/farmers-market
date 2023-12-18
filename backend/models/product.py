@@ -9,6 +9,7 @@ from backend.database import file_store
 from backend.models.utils import DuplicateProductError
 
 import sys
+import datetime
 from typing import Union
 
 
