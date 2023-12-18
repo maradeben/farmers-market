@@ -267,6 +267,7 @@ Connection: close
 ]
   ```
 
+
 **Retrieve Single Product**
 
 GET /api/v1/products/product/product_id
