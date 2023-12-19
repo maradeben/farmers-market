@@ -1,12 +1,6 @@
 """ utilities for models """
 import bcrypt
 
-class DuplicateProductError(Exception):
-    """ custom exception for duplicate product """
-    def __init__(self, message="Duplicate product"):
-        self.message = message
-        super().__init__(self.message)
-
 def hash_password(password: str) -> bytes:
     """ encrypt password """
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())

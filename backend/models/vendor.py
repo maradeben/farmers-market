@@ -1,50 +1,70 @@
 #!/usr/bin/env python3
 """ Set up basic template for a vendor """
-from mongoengine import DynamicDocument, IntField, StringField,\
-    ReferenceField, DateTimeField, FloatField, EmailField, ListField
-from mongoengine.errors import NotUniqueError
-from pymongo.errors import DuplicateKeyError
+from mongoengine import DynamicDocument, EmbeddedDocument, EmbeddedDocumentField,\
+        IntField, StringField, ReferenceField, DateTimeField, FloatField, EmailField, ListField
 
-import datetime
+from backend.custom_errors import *
+from backend.models.user import User
 
 
-class Vendor(DynamicDocument):
-    """ Template for the vendor
-
+class VendorInfo(EmbeddedDocument):
+    """ Additional vendor specific details
     Attrs:
-        rating(float): vendor rating
-        no_ratings(float): number of times vendor has been rated
-        email(str): vendor email, will be used as unique identifier
-            unique, and used to prevent duplicates
-        phone(str): phone
-        first_name(str): first name
-        last_name(str): last name
-        username(str): user name
-    
+        farmname(str): name of the farm
+        locaton(str): farmer/business location
+        ratin(float): rating of the business
+        num_ratings(int): number of times rated
     Methods:
-
     """
- 
-    phone = StringField(required=True)
-    email = EmailField(required=True, unique=True)
-    firstname = StringField(required=True)
-    lastname = StringField(required=True)
-    username = StringField(required=True)
+
     farmname = StringField(required=True)
     location = StringField(required=True)
-    rating = FloatField(required=True)
-    password = StringField(required=True)
-    created_at = DateTimeField(required=True, default=datetime.datetime.now())
-
-    meta = {
-        'collection': 'vendors'
-    }
+    rating = FloatField(default=0)
+    num_ratings = IntField(default=0)
     
-    # override init function to accomodate auto-saving on creation
-    def __init__(self, **kwargs):
-        # default init to create the object
-        super(Vendor, self).__init__(**kwargs)
-        self.save()
+
+
+class Vendor(User):
+    """ Vendor Module
+    Attrs:
+        vendor_details(VendorInfo): contains vendor specific details
+            as defined in the VendorInfo EmbeddedDocument
+        role(str): role of the vendor
+    Methods:
+    """
+        
+    vendor_details = EmbeddedDocumentField(VendorInfo, required=True)
+    role = StringField(default='vendor')
+
+
+def register_vendor(**kwargs):
+    """ handle converting of a User to a Vendor """
+    user_profile = User.objects(_cls="User", email=kwargs['email']).first()
+    if user_profile:
+        try:
+            user_details = json.loads(user_profile.to_json())
+            # don't reset created at, save the same created date
+            created_at = datetime.datetime.utcfromtimestamp(
+                            user_details.pop('created_at')['$date']/1000)
+            # print(type(created_at), created_at)
+            vendor = Vendor(**user_details)
+            vendor.created_at = created_at
+            # updated _clas attribute
+            vendor._cls = 'User.Vendor'
+            vendor.role = 'vendor'
+            # remove email from the newly passed in data
+            kwargs.pop('email')
+            # add the additional vendor details
+            vendor_info = VendorInfo(**kwargs)
+            vendor.vendor_details = vendor_info
+            # save the vendor and delete user profile
+            user_profile.delete()
+            vendor.save()
+        except Exception:
+            raise
+        return vendor
+    else:
+        raise UserNotFoundError("User not found")
 
 
 '''

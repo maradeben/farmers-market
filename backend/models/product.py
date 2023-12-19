@@ -6,7 +6,7 @@ from pymongo.errors import DuplicateKeyError
 
 from backend.models.vendor import Vendor
 from backend.database import file_store
-from backend.models.utils import DuplicateProductError
+from backend.custom_errors import *
 
 import sys
 import datetime
@@ -34,10 +34,10 @@ class Product(DynamicDocument):
     Methods:
     """
 
-    name = StringField(required=True)
+    product_name = StringField(required=True)
     price = FloatField(required=True)
     unit = StringField(required=True)
-    category = StringField(required=True, choices=product_categories)
+    category = StringField(required=True)
     stock = IntField(required=True)
     vendor = ReferenceField(Vendor, required=True)
     rating = FloatField(required=True)
@@ -49,36 +49,28 @@ class Product(DynamicDocument):
     meta = {
         'collection': 'products'
     }
-
-
-    # override init function to accomodate auto-saving on creation
-    def __init__(self, **kwargs):
-        # default init to create the object
-        super(Product, self).__init__(**kwargs)
     
     def exists(self, name, category, vendor, stock):
         """ if product exists, raise exception, if not, return False """
-        existing_product = Product.objects(name=name, category=category, vendor=vendor, stock=stock)
+        existing_product = Product.objects(product_name=name, category=category, vendor=vendor, stock=stock).first()
         if existing_product:
             raise DuplicateProductError(message="This product exists")
         return False
 
 
-# function to bundle creating and saving product, with duplicate validation
-def product_create_save(**kwargs):
+# function to create and save product
+def register_product(**kwargs):
     """ bundle creation and saving of product """
     product = Product(**kwargs)
     is_existing = False
 
     try:
-        is_existing = product.exists(product.name, product.category, product.vendor, product.stock)
+        is_existing = product.exists(product.product_name, product.category, product.vendor, product.stock)
     except DuplicateProductError as e:
         print("Product error:", e)
-    if not is_existing:
+    else:
         product.save()
-        return product
-
-
+    return product
 
 '''
 ______________________________________________________________________________________________________
