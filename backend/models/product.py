@@ -70,6 +70,7 @@ def register_product(**kwargs):
         print("Product error:", e)
     else:
         product.save()
+        print("Product saved successfully")
     return product
 
 '''
