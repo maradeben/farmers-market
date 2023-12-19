@@ -53,7 +53,7 @@ def register_user(**kwargs):
         if profile:
             raise DuplicateVendorError("Already registered as a Vendor") from None
                 # print("Duplicate product")
-        raise DuplicateUserError("This user has already been registered") from None
+        # raise DuplicateUserError("This user has already been registered") from None
         # print("User exists")
     else:
         # print("Saved")
