@@ -19,8 +19,8 @@ def get_top_vendors(limit: int=None) -> list:
     vendors_without_password = remove_password(tops)
     return vendors_without_password
 
-def get_single_vendor(id: str=None) -> dict:
+def get_single_vendor(email: str=None) -> dict:
     """ retrieve a single object based on its id """
-    vendor = Vendor.objects(id=id).first()
+    vendor = Vendor.objects(email=email).first()
     vendor_without_password  = remove_password([vendor])  # function expects list
     return vendor_without_password

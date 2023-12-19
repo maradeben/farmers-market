@@ -18,9 +18,9 @@ curl -i http://127.0.0.1:5000/api/v1/products/categories
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Sat, 16 Dec 2023 12:36:22 GMT
+Date: Tue, 19 Dec 2023 15:18:13 GMT
 Content-Type: application/json
-Content-Length: 84
+Content-Length: 81
 Access-Control-Allow-Origin: *
 Connection: close
 
@@ -28,7 +28,7 @@ Connection: close
   "Grains",
   "Roots/Tubers",
   "Fruits/Vegetables",
-  "Meat/Poultry",
+  "Meat/Fish",
   "Oils"
 ]
 ```
@@ -49,56 +49,58 @@ curl -i http://127.0.0.1:5000/api/v1/products/top-selling?limit=2
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Mon, 18 Dec 2023 01:35:38 GMT
+Date: Tue, 19 Dec 2023 15:18:40 GMT
 Content-Type: application/json
-Content-Length: 925
+Content-Length: 1055
 Access-Control-Allow-Origin: *
 Connection: close
 
 [
   {
     "_id": {
-      "$oid": "657f44f977e9bc4c33428ee7"
+      "$oid": "6581a96d25daaa7b08d926a3"
     },
     "category": "Roots/Tubers",
     "created_at": {
-      "$date": 1702866539265
+      "$date": 1702999923829
     },
     "image_url": [
-      "frontend/assets/images/product-images/default-product-image.jpg"
+      "frontend/assets/images/product-images/roots-placeholder-image.png"
     ],
-    "location": "Gombe",
-    "name": "Cocoa",
     "num_ratings": 0,
     "price": 1695.0,
+    "product_name": "Cocoa",
     "rating": 5.0,
     "stock": 253,
     "unit": "unit",
     "vendor": {
-      "$oid": "657f413c77e9bc4c33428ee6"
-    }
+      "$oid": "6581a96d25daaa7b08d926a0"
+    },
+    "vendor_email": "georgeamara@ymail.com",
+    "vendor_location": "Suleja"
   },
   {
     "_id": {
-      "$oid": "657f44fa77e9bc4c33428eec"
+      "$oid": "6581a96d25daaa7b08d926a8"
     },
-    "category": "Grains",
+    "category": "Oils",
     "created_at": {
-      "$date": 1702866539265
+      "$date": 1702999923829
     },
     "image_url": [
-      "frontend/assets/images/product-images/default-product-image.jpg"
+      "frontend/assets/images/product-images/oil-placeholder-image.png"
     ],
-    "location": "Kogi",
-    "name": "Corn",
     "num_ratings": 0,
-    "price": 2356.0,
+    "price": 6333.0,
+    "product_name": "Peanut oil",
     "rating": 5.0,
     "stock": 841,
-    "unit": "unit",
+    "unit": "litre",
     "vendor": {
-      "$oid": "657f413977e9bc4c33428ede"
-    }
+      "$oid": "6581a96d25daaa7b08d92698"
+    },
+    "vendor_email": "amosgoodwill@ymail.com",
+    "vendor_location": "Abuja"
   }
 ]
 ```
@@ -106,73 +108,85 @@ Connection: close
 
 **Retrieve Products**
 
-GET /api/v1/products
+GET /api/v1/products?limit=x
+
+* Params:
+  * limit(int)=999 - Optional.
+      * Return the top selling products, limiting to the passed value, else returns top 999
+
+
 ```
-curl -i http://127.0.0.1:5000/api/v1/products/
+curl -i http://127.0.0.1:5000/api/v1/products?limit=2
 ```
+
+
 **Response**
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Mon, 18 Dec 2023 01:39:42 GMT
+Date: Tue, 19 Dec 2023 15:21:42 GMT
 Content-Type: application/json
-Content-Length: 925
+Content-Length: 1051
 Access-Control-Allow-Origin: *
 Connection: close
 
 [
   {
     "_id": {
-      "$oid": "657f44fd77e9bc4c334290b3"
+      "$oid": "6581a96d25daaa7b08d926a2"
     },
-    "category": "Fruits/Vegetables",
+    "category": "Grains",
     "created_at": {
-      "$date": 1702866539265
+      "$date": 1702999923829
     },
     "image_url": [
-      "frontend/assets/images/product-images/default-product-image.jpg"
+      "frontend/assets/images/product-images/grains-placeholder-image.png"
     ],
-    "location": "Kogi",
-    "name": "Water leaf",
     "num_ratings": 0,
-    "price": 814.0,
-    "rating": 4.0,
-    "stock": 789,
+    "price": 999.0,
+    "product_name": "Rice",
+    "rating": 3.0,
+    "stock": 619,
     "unit": "unit",
     "vendor": {
-      "$oid": "657f413977e9bc4c33428ede"
-    }
+      "$oid": "6581a96d25daaa7b08d9269e"
+    },
+    "vendor_email": "ahmad.h@coldmail.com",
+    "vendor_location": "Otukpo"
   },
   {
     "_id": {
-      "$oid": "657f44fd77e9bc4c334290b4"
+      "$oid": "6581a96d25daaa7b08d926a3"
     },
-    "category": "Meat/Poultry",
+    "category": "Roots/Tubers",
     "created_at": {
-      "$date": 1702866539265
+      "$date": 1702999923829
     },
     "image_url": [
-      "frontend/assets/images/product-images/default-product-image.jpg"
+      "frontend/assets/images/product-images/roots-placeholder-image.png"
     ],
-    "location": "Ijebu",
-    "name": "Goat",
     "num_ratings": 0,
-    "price": 9448.0,
-    "rating": 3.0,
-    "stock": 559,
-    "unit": "kg",
+    "price": 1695.0,
+    "product_name": "Cocoa",
+    "rating": 5.0,
+    "stock": 253,
+    "unit": "unit",
     "vendor": {
-      "$oid": "657f413b77e9bc4c33428ee4"
-    }
+      "$oid": "6581a96d25daaa7b08d926a0"
+    },
+    "vendor_email": "georgeamara@ymail.com",
+    "vendor_location": "Suleja"
   }
-  ...
 ]
- 
 ```
 
 **Retrieve Products by category**
 
-GET /api/v1/products/\<category\>
+GET /api/v1/products/\<category\>?limit=x
+
+* Params:
+  * limit(int)=999 - Optional.
+      * Return the top selling products, limiting to the passed value, else returns top 999
 
 Where category is the product's category so:
 
@@ -180,90 +194,61 @@ Where category is the product's category so:
     *'fruits-veggies': 'Fruits/Vegetables',*  
     *'grains': 'Grains',*  
     *'oils': 'Oils',*  
-    *'meat-poultry': 'Meat/Poultry',*  
+    *'meat-fish': 'Meat/Fish',*  
     *'roots-tubers': 'Roots/Tubers'*  
   *}*
 ```
-curl -i http://127.0.0.1:5000/api/v1/products/grains
+curl -i http://127.0.0.1:5000/api/v1/products/grains?limit=2
 ```
 **Response**
 ```
-HTTP/1.1 200 OK
-Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Mon, 18 Dec 2023 01:43:51 GMT
-Content-Type: application/json
-Content-Length: 925
-Access-Control-Allow-Origin: *
-Connection: close
-
 [
   {
     "_id": {
-      "$oid": "657f44fb77e9bc4c33428fd7"
+      "$oid": "6581a96d25daaa7b08d926a2"
     },
     "category": "Grains",
     "created_at": {
-      "$date": 1702866539265
+      "$date": 1702999923829
     },
     "image_url": [
-      "frontend/assets/images/product-images/default-product-image.jpg"
+      "frontend/assets/images/product-images/grains-placeholder-image.png"
     ],
-    "location": "Kogi",
-    "name": "Wheat",
     "num_ratings": 0,
-    "price": 10908.0,
-    "rating": 5.0,
-    "stock": 983,
-    "unit": "kg",
-    "vendor": {
-      "$oid": "657f413977e9bc4c33428ede"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "657f44fb77e9bc4c33428fd8"
-    },
-    "category": "Grains",
-    "created_at": {
-      "$date": 1702866539265
-    },
-    "image_url": [
-      "frontend/assets/images/product-images/default-product-image.jpg"
-    ],
-    "location": "Kogi",
-    "name": "Corn",
-    "num_ratings": 0,
-    "price": 10908.0,
+    "price": 999.0,
+    "product_name": "Rice",
     "rating": 3.0,
-    "stock": 484,
-    "unit": "kg",
-    "vendor": {
-      "$oid": "657f413977e9bc4c33428ede"
-    }
-  },
-  {
-    "_id": {
-      "$oid": "657f44fc77e9bc4c33428fe2"
-    },
-    "category": "Grains",
-    "created_at": {
-      "$date": 1702866539265
-    },
-    "image_url": [
-      "frontend/assets/images/product-images/default-product-image.jpg"
-    ],
-    "location": "Gombe",
-    "name": "Rice",
-    "num_ratings": 0,
-    "price": 1195.0,
-    "rating": 5.0,
-    "stock": 615,
+    "stock": 619,
     "unit": "unit",
     "vendor": {
-      "$oid": "657f413c77e9bc4c33428ee6"
-    }
+      "$oid": "6581a96d25daaa7b08d9269e"
+    },
+    "vendor_email": "ahmad.h@coldmail.com",
+    "vendor_location": "Otukpo"
+  },
+  {
+    "_id": {
+      "$oid": "6581a96d25daaa7b08d926aa"
+    },
+    "category": "Grains",
+    "created_at": {
+      "$date": 1702999923829
+    },
+    "image_url": [
+      "frontend/assets/images/product-images/grains-placeholder-image.png"
+    ],
+    "num_ratings": 0,
+    "price": 999.0,
+    "product_name": "Corn",
+    "rating": 4.0,
+    "stock": 864,
+    "unit": "unit",
+    "vendor": {
+      "$oid": "6581a96d25daaa7b08d926a1"
+    },
+    "vendor_email": "wisdom@mailer.com",
+    "vendor_location": "Gombe"
   }
-  ...
 ]
   ```
 
@@ -275,7 +260,7 @@ GET /api/v1/products/product/product_id
 Retrieve product by product id
 
 ```
-curl -i http://127.0.0.1:5000/api/v1/products/product/657f44fc77e9bc4c33428fe2
+curl -i http://127.0.0.1:5000/api/v1/products/product/6581a96d25daaa7b08d926aa
 ```
 
 **Response**
@@ -310,7 +295,37 @@ Connection: close
     "unit": "unit",
     "vendor": {
       "$oid": "657f413c77e9bc4c33428ee6"
-    }
+    }HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.9.18
+Date: Tue, 19 Dec 2023 15:24:54 GMT
+Content-Type: application/json
+Content-Length: 519
+Access-Control-Allow-Origin: *
+Connection: close
+
+[
+  {
+    "_id": {
+      "$oid": "6581a96d25daaa7b08d926aa"
+    },
+    "category": "Grains",
+    "created_at": {
+      "$date": 1702999923829
+    },
+    "image_url": [
+      "frontend/assets/images/product-images/grains-placeholder-image.png"
+    ],
+    "num_ratings": 0,
+    "price": 999.0,
+    "product_name": "Corn",
+    "rating": 4.0,
+    "stock": 864,
+    "unit": "unit",
+    "vendor": {
+      "$oid": "6581a96d25daaa7b08d926a1"
+    },
+    "vendor_email": "wisdom@mailer.com",
+    "vendor_location": "Gombe"
   }
 ]
 ```
@@ -338,49 +353,55 @@ GET /api/v1/vendors/top-vendors?limit=x
 **Response**
 
 ```
+HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Mon, 18 Dec 2023 01:50:05 GMT
+Date: Tue, 19 Dec 2023 15:25:23 GMT
 Content-Type: application/json
-Content-Length: 735
+Content-Length: 829
 Access-Control-Allow-Origin: *
 Connection: close
 
 [
   {
+    "_cls": "User.Vendor",
     "_id": {
-      "$oid": "657f407777e9bc4c33428eda"
+      "$oid": "6581a96d25daaa7b08d92698"
     },
+    "cart": [],
     "created_at": {
-      "$date": 1702841383435
+      "$date": 1702999923827
     },
     "email": "amosgoodwill@ymail.com",
-    "farmname": "Amos Farm",
     "firstname": "Amos",
     "lastname": "Goodwill",
-    "location": "Abuja",
-    "num_ratings": 0,
-    "phone": "123-456",
-    "rating": 5.0,
-    "username": "amogood"
+    "role": "vendor",
+    "vendor_details": {
+      "farmname": "Amos Farm",
+      "location": "Abuja",
+      "num_ratings": 0,
+      "rating": 0.0
+    }
   },
   {
+    "_cls": "User.Vendor",
     "_id": {
-      "$oid": "657f413a77e9bc4c33428ee0"
+      "$oid": "6581a96d25daaa7b08d92699"
     },
+    "cart": [],
     "created_at": {
-      "$date": 1702841383435
+      "$date": 1702999923827
     },
-    "email": "chiakpan@fresh.com",
-    "farmname": "Chi Fresh Produce",
-    "firstname": "Chinonso",
-    "lastname": "Akpan",
-    "location": "Ibadan",
-    "num_ratings": 0,
-    "phone": "111-111",
-    "rating": 5.0,
-    "username": "apk_chi"
+    "email": "bilua@starfarms.com",
+    "firstname": "Ilua",
+    "lastname": "Bilunde",
+    "role": "vendor",
+    "vendor_details": {
+      "farmname": "Star Farms",
+      "location": "Kogi",
+      "num_ratings": 0,
+      "rating": 0.0
+    }
   }
-  ...
 ]
 ```
 
@@ -391,7 +412,7 @@ GET /api/v1/vendor/vendor/vendor_id
 Retrieve product by product id
 
 ```
-curl -i http://127.0.0.1:5000/api/v1/vendors/vendor/657f407777e9bc4c33428eda
+curl -i http://127.0.0.1:5000/api/v1/vendors/vendor/6581a96d25daaa7b08d92699
 ```
 
 **Response**
@@ -399,29 +420,35 @@ curl -i http://127.0.0.1:5000/api/v1/vendors/vendor/657f407777e9bc4c33428eda
 ```
 HTTP/1.1 200 OK
 Server: Werkzeug/3.0.1 Python/3.9.18
-Date: Mon, 18 Dec 2023 01:52:23 GMT
+Date: Tue, 19 Dec 2023 15:26:28 GMT
 Content-Type: application/json
-Content-Length: 366
+Content-Length: 519
 Access-Control-Allow-Origin: *
 Connection: close
 
 [
   {
     "_id": {
-      "$oid": "657f407777e9bc4c33428eda"
+      "$oid": "6581a96d25daaa7b08d926aa"
     },
+    "category": "Grains",
     "created_at": {
-      "$date": 1702841383435
+      "$date": 1702999923829
     },
-    "email": "amosgoodwill@ymail.com",
-    "farmname": "Amos Farm",
-    "firstname": "Amos",
-    "lastname": "Goodwill",
-    "location": "Abuja",
+    "image_url": [
+      "frontend/assets/images/product-images/grains-placeholder-image.png"
+    ],
     "num_ratings": 0,
-    "phone": "123-456",
-    "rating": 5.0,
-    "username": "amogood"
+    "price": 999.0,
+    "product_name": "Corn",
+    "rating": 4.0,
+    "stock": 864,
+    "unit": "unit",
+    "vendor": {
+      "$oid": "6581a96d25daaa7b08d926a1"
+    },
+    "vendor_email": "wisdom@mailer.com",
+    "vendor_location": "Gombe"
   }
 ]
 ```

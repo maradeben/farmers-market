@@ -8,7 +8,7 @@ cat_routes = {
     'fruits-veggies': 'Fruits/Vegetables',
     'grains': 'Grains',
     'oils': 'Oils',
-    'meat-poultry': 'Meat/Poultry',
+    'meat-fish': 'Meat/Fish',
     'roots-tubers': 'Roots/Tubers'
 }
 
@@ -19,19 +19,22 @@ def include_vendor_location(products: list) -> list:
     products_json = []
     for product in products:
         data = json.loads(product.to_json())
-        data.update({'location': product.vendor.location})
+        data.update({
+            'vendor_location': product.vendor.vendor_details.location,
+            'vendor_email': product.vendor.email
+            })
         products_json.append(data)
     
     return products_json
 
-def get_products(category: str=None) -> list:
+def get_products(category: str=None, limit:int=999) -> list:
     """ retrieve all products from the database """
 
     if category:
         category = cat_routes[category]
-        products = Product.objects(category=category)
+        products = Product.objects(category=category).limit(limit)
     else:
-        products = Product.objects()
+        products = Product.objects().limit(limit)
 
     # include location
     products_with_loc = include_vendor_location(products)

@@ -56,7 +56,7 @@ class FileStorage:
             'fruits-veggies': 'Fruits/Vegetables',
             'grains': 'Grains',
             'oils': 'Oils',
-            'meat-poultry': 'Meat/Poultry',
+            'meat-fish': 'Meat/Fish',
             'roots-tubers': 'Roots/Tubers'
         }
         products = self.all()['products']

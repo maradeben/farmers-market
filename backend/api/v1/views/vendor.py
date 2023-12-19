@@ -13,10 +13,10 @@ def top_vendors():
     limit = int(request.args.get('limit', 20))
     return jsonify(get_top_vendors(limit))
 
-@app_views.route('vendors/vendor/<vendor_id>', methods=['GET'], strict_slashes=False)
-def single_vendor(vendor_id: str):
+@app_views.route('vendors/vendor/<vendor_email>', methods=['GET'], strict_slashes=False)
+def single_vendor(vendor_email: str):
     """ retrieve a single vector by id """
     try:
-        return jsonify(get_single_vendor(vendor_id))
+        return jsonify(get_single_vendor(vendor_email))
     except KeyError:
         abort(404, description="Vendor not found")

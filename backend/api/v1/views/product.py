@@ -27,8 +27,9 @@ def products(cat_name=None):
     retrieve products of a particular category
     or all products if not category is specified
     """
+    limit = int(request.args.get('limit', 999))
     try:
-        return jsonify(get_products(cat_name))
+        return jsonify(get_products(cat_name, limit))
     except KeyError:
         abort(404, description="Not found, check category name")
 
