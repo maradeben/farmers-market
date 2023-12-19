@@ -1,0 +1,64 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>User Authentication</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="forgot-password.html">Forgot Password</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+                <li><a href="vendor.html">Vendor Page</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="form-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <!-- Login form elements go here -->
+                <label for="loginEmail">Email:</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                <label for="loginPassword">Password:</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                <button type="submit">Login</button>
+                <p>If you don't have an account, <a href="signup.html">sign up here</a>.</p>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h2>Forgot Password</h2>
+            <form id="forgotPasswordForm">
+                <!-- Forgotten password form elements go here -->
+                <label for="forgotEmail">Email:</label>
+                <input type="email" id="forgotEmail" placeholder="Enter your email" required>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <form id="signupForm">
+                <!-- Sign-up form elements go here -->
+                <label for="signupEmail">Email:</label>
+                <input type="email" id="signupEmail" placeholder="Enter your email" required>
+                <label for="signupPassword">Password:</label>
+                <input type="password" id="signupPassword" placeholder="Create a password" required>
+                <button type="submit" onclick="window.location.href='registered.html'">Sign Up</button>
+                <p>If you already have an account, <a href="login.html">login here</a>.</p>
+            </form>
+        </div>
+    </div>
+
+    <script src="bundle.js"></script>
+</body>
+</html>
