@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"farmer_market.users"},{"v":2,"unique":true,"key":{"email":1},"name":"email_1","ns":"farmer_market.users","background":false,"sparse":false},{"v":2,"key":{"_cls":1},"name":"_cls_1","ns":"farmer_market.users","background":false}],"uuid":"3c7939b01e104ba2a20b0eb59144cac1"}
