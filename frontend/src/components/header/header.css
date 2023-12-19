@@ -2,15 +2,24 @@
 html,body {
     padding: 0;
     margin: 0;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 
 header {
-    background-color: #6dbe45; /* Add your preferred background color */
-    padding: 10px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  background-color: rgba(109, 190, 69, 0.9); /* Add your preferred background color */
+  backdrop-filter: blur(8px);
+  padding: 10px;
+  z-index: 1000;
   }
   
   .header-container {
+    top: 0;
+    width: 100%;
     max-width: 1200px;
     padding: 0 20px;
     height: 60px;
@@ -70,7 +79,7 @@ header {
     height: 35px;
   }
   
-  input {
+  .search-input {
     padding: 5px;
     margin-right: 5px;
     width: 400px;
@@ -116,7 +125,7 @@ header {
         margin-left: 40px;
       } 
 
-      input {
+      .search-input {
         padding: 5px;
         margin-right: 5px;
         width: 300px;
@@ -136,6 +145,10 @@ header {
       margin-right: 10px;
       font-size: 30px;
     }
+
+    .hamburger-menu:focus {
+      color: #ff8c00;
+    } 
   
       /* styles for the mobile menu, for example: */
 
@@ -162,6 +175,7 @@ header {
     background-color: #ff8c00; /* Change the background color on hover/active */
     color: #fff; /* Change the text color on hover/active */
     text-decoration: none;
+    transition: 0.5s ease;
 }
 
     .left-section {

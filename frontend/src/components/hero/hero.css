@@ -8,6 +8,7 @@ html, body {
 .hero-container {
     padding-left: 80px;
     padding-right: 80px;
+    margin-top: 140px;
 }
 
 /* Navigation links styles */
@@ -16,7 +17,6 @@ html, body {
     flex-direction: column;
     background-color: rgb(238, 237, 237);
     padding: 10px;
-    margin-top: 70px;
     border-radius: 10px;
 }
 
@@ -44,7 +44,6 @@ html, body {
 .image-container {
     flex: 0 0 75%;
     max-width: 75%;
-    margin-top: 70px;
     padding-left: 10px;
     overflow: hidden;
 }
@@ -67,9 +66,7 @@ html, body {
 
 /* Medium-sized screens */
 @media screen and (max-width: 992px) {
-    .hero-container {
-        padding: 0;
-    }
+    
     .hero-menu a {
         padding: 12px;
     }
@@ -77,18 +74,22 @@ html, body {
     .hero-container {
         padding-left: 20px;
         padding-right: 20px;
+        margin-top: 90px;
     }
 }
 
 /* Small screens */
 @media screen and (max-width: 576px) {
     .hero-container {
-        padding: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 80px;
     }
 
     .image-container {
         margin: 0 auto;
-        padding: 0;
+        padding-left: 0;
+        padding-top: 10px;
     }
 
     .image-container {
@@ -100,7 +101,4 @@ html, body {
         display: none;
     }
 
-    .hero-image img {
-        border-radius: 0;
-    }
 }
