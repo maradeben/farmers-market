@@ -14,7 +14,7 @@ from typing import Union
 
 
 
-product_categories =  ['Grains', 'Roots/Tubers', 'Fruits/Vegetables', 'Meat/Poultry', 'Oils']
+product_categories =  ['Grains', 'Roots/Tubers', 'Fruits/Vegetables', 'Meat/Fish', 'Oils']
 
 class Product(DynamicDocument):
     """ Product template class, inheriting from the BaseModel

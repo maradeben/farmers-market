@@ -2,10 +2,14 @@
 """ Set up basic template for a vendor """
 from mongoengine import DynamicDocument, EmbeddedDocument, EmbeddedDocumentField,\
         IntField, StringField, ReferenceField, DateTimeField, FloatField, EmailField, ListField
+from mongoengine.errors import NotUniqueError
+from pymongo.errors import DuplicateKeyError
 
 from backend.custom_errors import *
 from backend.models.user import User
 
+import json
+import datetime
 
 class VendorInfo(EmbeddedDocument):
     """ Additional vendor specific details

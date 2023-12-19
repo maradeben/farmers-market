@@ -1,8 +1,12 @@
 """ Module containing blueprint for user """
 from mongoengine import DynamicDocument, EmbeddedDocument, EmbeddedDocumentField,\
     IntField, StringField, ReferenceField, DateTimeField, FloatField, EmailField, ListField
-import datetime
+from mongoengine.errors import NotUniqueError
+from pymongo.errors import DuplicateKeyError
+
 from backend.custom_errors import *
+
+import datetime
 
 class User(DynamicDocument):
     """ User model
@@ -37,6 +41,10 @@ class User(DynamicDocument):
 
 def register_user(**kwargs):
     """ bundle registration of a User """
+
+    # importing here to prevent circular import
+    from backend.models.vendor import Vendor
+
     user = User(**kwargs)
     try:
         user.save()
@@ -45,9 +53,10 @@ def register_user(**kwargs):
         if profile:
             raise DuplicateVendorError("Already registered as a Vendor") from None
                 # print("Duplicate product")
-        # raise DuplicateUserError("This user has already been registered") from None
-        print("User exists")
+        raise DuplicateUserError("This user has already been registered") from None
+        # print("User exists")
     else:
-        print("Saved")
+        # print("Saved")
+        pass
     return user
 
