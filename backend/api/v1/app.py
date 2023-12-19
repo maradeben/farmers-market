@@ -9,6 +9,7 @@ from backend.database.db_storage import DBStorage as db_connect
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 app.register_blueprint(app_views)
+app.register_blueprint(auth_views)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 db_connect
 
