@@ -1,1 +1,8 @@
 node_modules
+.*.swp
+fmarket
+backend/main_test.py
+*.ipynb
+__pycache__/
+mongo_tut.py
+node_modules/
