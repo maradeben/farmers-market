@@ -6,7 +6,7 @@ from backend.api.v1.views import app_views
 
 from backend.database.product_ops import *
 
-from flask import jsonify, request
+from flask import jsonify, request, abort
 
 @app_views.route('products/categories', methods=['GET'], strict_slashes=False)
 def categories():

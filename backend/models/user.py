@@ -3,13 +3,15 @@ from mongoengine import DynamicDocument, EmbeddedDocument, EmbeddedDocumentField
     IntField, StringField, ReferenceField, DateTimeField, FloatField, EmailField, ListField
 from mongoengine.errors import NotUniqueError
 from pymongo.errors import DuplicateKeyError
+from flask_login import UserMixin
 
 from backend.custom_errors import *
 
 import datetime
 
-class User(DynamicDocument):
+class User(DynamicDocument, UserMixin):
     """ User model
+    Inherits from UserMixin to provide default attributes for flask_login
     Attrs:
         phone(str): phone number
         email(str): email
@@ -51,12 +53,13 @@ def register_user(**kwargs):
     except(DuplicateKeyError, NotUniqueError):
         profile = Vendor.objects(email=kwargs['email'])
         if profile:
-            raise DuplicateVendorError("Already registered as a Vendor") from None
+            raise DuplicateVendorError(f"Error: {user.email} is already registered as a Vendor") from None
                 # print("Duplicate product")
-        # raise DuplicateUserError("This user has already been registered") from None
+        print(f"Error: {user.email} is previously registered")
+        raise
         # print("User exists")
     else:
-        # print("Saved")
-        pass
+        print(f"{user.email} sucessfully registered")
+        # pass
     return user
 
