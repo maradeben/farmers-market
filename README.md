@@ -8,6 +8,7 @@ _Built as the final Webstack Portfolio Project in the ALX/Holberton Full Stack S
 * [Technologies](#technologies)
 * [Database](#database)
 * [API Docs](#api-docs)
+* [Auth Docs](#auth-docs)
 * [Authors](#authors)
 
 
@@ -53,6 +54,9 @@ These are intended for the production environment for sharing data between devel
 
 ## API Docs
 [See API Docs](backend/api/v1/README.md)
+
+## Auth Docs
+[See Auth Docs](backend/auth/README.md)
 
 ## Authors
 
