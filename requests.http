@@ -1,9 +1,6 @@
-GET http://127.0.0.1:5000
+POST  http://127.0.0.1:5000/auth/login?password=like123&email=adeola@gemail.com
 
 ###
-
-GET http://127.0.0.1:5000/api/v1/products?limit=2
+GET https://127.0.0.1:5000/auth/hello
 
 ###
-
-POST http://127.0.0.1:5000/auth/login?password=like123&email=adeola@gemail.com

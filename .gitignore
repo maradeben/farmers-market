@@ -6,3 +6,5 @@ backend/main_test.py
 __pycache__/
 mongo_tut.py
 node_modules/
+requests.http
+update_ratings.py
