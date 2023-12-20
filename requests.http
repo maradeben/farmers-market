@@ -1,7 +1,0 @@
-POST  http://127.0.0.1:5000/auth/login?password=like123&email=adeola@gemail.com
-
-###
-GET https://127.0.0.1:5000/auth/hello
-
-###
-GET https://127.0.1:5000/auth/logout

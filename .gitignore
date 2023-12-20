@@ -9,3 +9,4 @@ node_modules/
 requests.http
 update_ratings.py
 __pycache__
+/__pycache__/
