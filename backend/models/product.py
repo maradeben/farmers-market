@@ -1,4 +1,5 @@
 """ Module containing blueprint for product """
+import datetime
 from mongoengine import DynamicDocument, IntField, StringField, ReferenceField,\
     DateTimeField, FloatField, EmailField, ListField
 from mongoengine.errors import NotUniqueError
