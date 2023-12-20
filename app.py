@@ -4,7 +4,7 @@ from flask import Flask, make_response, jsonify
 from flask_cors import CORS
 from backend.api.v1.views import app_views
 from backend.api.v1.views import auth_views
-from backend.database.db_storage import DBStorage as db_connect
+from backend.database.db_storage import storage_engine
 
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
@@ -12,7 +12,13 @@ app.register_blueprint(app_views)
 cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 app.register_blueprint(auth_views)
 
-db_connect
+try:
+    storage_engine.close_connection()
+except Exception:
+    storage_engine.connect()
+else:
+    storage_engine.connect()
+    
 
 # Test route
 @app.route('/')
