@@ -2,6 +2,7 @@
 fmarket
 backend/main_test.py
 *.ipynb
-__pycache__/
-mongo_tut.py
+backend/__pycache_/*
+backend/database/__pycache__/*
+backend/models/__pycache__/*
 node_modules/
