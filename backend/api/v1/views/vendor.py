@@ -4,7 +4,7 @@ from backend.models.vendor import Vendor
 # from backend.database import file_store
 from backend.database.vendor_ops import *
 from backend.api.v1.views import app_views
-from flask import jsonify, request
+from flask import jsonify, request, abort
 
 
 @app_views.route('vendors/top-vendors', methods=['GET'], strict_slashes=False)
@@ -18,5 +18,5 @@ def single_vendor(vendor_email: str):
     """ retrieve a single vector by id """
     try:
         return jsonify(get_single_vendor(vendor_email))
-    except KeyError:
+    except Exception:
         abort(404, description="Vendor not found")
