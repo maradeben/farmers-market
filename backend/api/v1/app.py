@@ -14,7 +14,6 @@ cors = CORS(app, resources={r"/api/v1/*": {"origins": "*"}})
 app.register_blueprint(auth_views)
 login_manager.init_app(app)
 
-db_connect
 
 # Test route
 @app.route('/')
